@@ -11,6 +11,8 @@ RUN touch /var/log/cron.log
 
 ADD s3cfg /root/.s3cfg
 ADD *.sh /root/
+ADD rsyslog.conf /etc/
+RUN chmod 0644 /etc/rsyslog.conf
 
 ADD crontab /var/spool/cron/crontabs/root
 RUN chmod 0600 /var/spool/cron/crontabs/root
