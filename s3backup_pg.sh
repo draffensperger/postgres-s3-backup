@@ -9,6 +9,6 @@ RAND_STR=`cat /dev/urandom | head -c 30 | base64 | sed -e 's/+/_/g' -e 's/\\//-/
 TMP_FILE=/tmp/$RAND_STR.dump
 touch $TMP_FILE
 chmod 0600 $TMP_FILE
-pg_dump -h $PG_S3_BACKUP_HOST -C -Fc -U $3 $2 >> $TMP_FILE
+pg_dump -h $4 -C -Fc -U $3 $2 -f $TMP_FILE
 s3cmd --config /root/.s3cfg put $TMP_FILE s3://$1/$2/$2.`/bin/date +%Y_%m_%d`.$RAND_STR.dump
 rm $TMP_FILE
